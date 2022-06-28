@@ -8,5 +8,5 @@ CREATE TABLE secrets (
     title TEXT NOT NULL,
     last_name TEXT NOT NULL,
     description TEXT NOT NULL,
-   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-   );
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    );

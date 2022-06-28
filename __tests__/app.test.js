@@ -7,7 +7,7 @@ const app = require('../lib/app');
 const mockUser = {
   title: 'Scary Story',
   description:
-    'A bedtime story abount a cannibal who tricked people into eating humans',
+    'A bedtime story about a cannibal who tricked people into eating humans',
   created_at: ' 0000',
 };
 
