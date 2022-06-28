@@ -5,10 +5,10 @@ const app = require('../lib/app');
 // const UserService = require('../lib/services/UserService');
 
 const mockUser = {
-  title: 'Scary Story',
-  description:
-    'A bedtime story about a cannibal who tricked people into eating humans',
-  created_at: ' 0000',
+  first_name: 'Bill',
+  last_name: 'Burr',
+  email: 'bill@example.com',
+  password: '123456',
 };
 
 // const registerAndLogin = async (userProps = {}) => {
@@ -18,12 +18,13 @@ const mockUser = {
 //   // agent allows us to store cookies between requests
 
 //   const user = await UserService.create({ ...mockUser, ...userProps });
+//   // creates a user sign in with//
 
 //   const { email } = user;
-
 //   await agent.post('/api/v1/users/session').send({ email, password });
 //   return [agent, user];
 // };
+//sign in
 
 describe('authentication routes', () => {
   beforeEach(() => {
@@ -32,13 +33,13 @@ describe('authentication routes', () => {
   it('creates a new user', async () => {
     const res = await request(app).post('/api/v1/users').send(mockUser);
     console.log(res.body);
-    const { title, description, created_at } = mockUser;
+    const { first_name, last_name, email } = mockUser;
 
     expect(res.body).toEqual({
       id: expect.any(String),
-      title,
-      description,
-      created_at,
+      first_name,
+      last_name,
+      email,
     });
   });
   afterAll(() => {
