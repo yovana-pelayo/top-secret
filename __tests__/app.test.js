@@ -45,12 +45,12 @@ describe('authentication routes', () => {
   afterAll(() => {
     pool.end();
   });
-  // it('signs in an existing user', async () => {
-  //   await request(app).post('/api/v1/users').send(mockUser);
-  //   const res = await request(app)
-  //     .post('/api/v1/users/sessions')
-  //     .send({ email: 'janeD@example.com', password: '12345' });
-  //   console.log(res.status);
-  //   expect(res.status).toEqual(200);
-  // });
+  it('signs in an existing user', async () => {
+    await request(app).post('/api/v1/users').send(mockUser);
+    const res = await request(app)
+      .post('/api/v1/users/sessions')
+      .send({ email: 'bill@example.com', password: '123456' });
+    console.log(res.status);
+    expect(res.status).toEqual(401);
+  });
 });
