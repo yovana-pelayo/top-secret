@@ -21,7 +21,7 @@ const registerAndLogin = async (userProps = {}) => {
   // creates a user sign in with//
 
   const { email } = user;
-  await agent.post('/api/v1/users/session').send({ email, password });
+  await agent.post('/api/v1/users/sessions').send({ email, password });
   return [agent, user];
 };
 
@@ -41,15 +41,15 @@ describe('authentication routes', () => {
     });
   });
   it('signs in an existing user', async () => {
-    // const [agent, user] = await registerAndLogin();
-    const agent = await request(app).post('/api/v1/users').send(mockUser);
-    console.log(agent.body);
-    const res = await request(app)
-      .post('/api/v1/users/sessions')
-      .send({ email: mockUser.email, password: mockUser.password });
-    //   .post('/api/v1/users/sessions')
-    //   .send({ email: 'bill@example.com', password: '123456' });
-    expect(res.status).toEqual(200);
+    const [agent, user] = await registerAndLogin();
+    const me = await agent.get('/api/v1/users/me');
+
+    expect(me.status).toEqual(200);
+    expect(me.body).toEqual({
+      ...user,
+      exp: expect.any(Number),
+      iat: expect.any(Number),
+    });
   });
 
   it('DELETE /sessions deletes the user session', async () => {
