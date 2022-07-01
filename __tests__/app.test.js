@@ -40,7 +40,7 @@ describe('authentication routes', () => {
       email,
     });
   });
-  it.only('signs in an existing user', async () => {
+  it('signs in an existing user', async () => {
     // const [agent, user] = await registerAndLogin();
     const agent = await request(app).post('/api/v1/users').send(mockUser);
     console.log(agent.body);
