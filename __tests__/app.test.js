@@ -41,15 +41,23 @@ describe('authentication routes', () => {
     });
   });
   it('signs in an existing user', async () => {
-    const [agent, user] = await registerAndLogin();
-    const me = await agent.get('/api/v1/users/me');
+    // const [agent, user] = await registerAndLogin();
+    // const me = await agent.get('/api/v1/users/me');
 
-    expect(me.status).toEqual(200);
-    expect(me.body).toEqual({
-      ...user,
-      exp: expect.any(Number),
-      iat: expect.any(Number),
-    });
+    // expect(me.status).toEqual(200);
+    // expect(me.body).toEqual({
+    //   ...user,
+    //   exp: expect.any(Number),
+    //   iat: expect.any(Number),
+    // });
+    await UserService.create(mockUser);
+    const { email, password } = mockUser;
+    const res = await request(app)
+      .post('/api/v1/users/sessions')
+      .send({ email, password });
+    console.log(res.body);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ message: 'Signed in successfully!' });
   });
 
   it('DELETE /sessions deletes the user session', async () => {
