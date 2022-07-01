@@ -9,10 +9,12 @@ CREATE TABLE secrets (
     description TEXT NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
     );
-CREATE TABLE users (
+CREATE TABLE userss (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
     email TEXT NOT NULL,
     password_hash TEXT NOT NULL
     );
+
+INSERT INTO secrets (title, description, created_at) VALUES ('Viewer discretion is advised', 'The secret is that spongebob had the string', '2017-08-15 21:05:15.723336+07');
