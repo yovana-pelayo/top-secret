@@ -49,7 +49,6 @@ describe('authentication routes', () => {
       .send({ email: mockUser.email, password: mockUser.password });
     //   .post('/api/v1/users/sessions')
     //   .send({ email: 'bill@example.com', password: '123456' });
-    console.log('mockuser message', mockUser.email, mockUser.password);
     expect(res.status).toEqual(200);
   });
 
