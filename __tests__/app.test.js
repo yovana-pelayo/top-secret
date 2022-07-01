@@ -7,7 +7,7 @@ const UserService = require('../lib/services/UserService');
 const mockUser = {
   first_name: 'Bill',
   last_name: 'Burr',
-  email: 'bill@example.com',
+  email: 'bill2@example.com',
   password: '123456',
 };
 
@@ -31,7 +31,6 @@ describe('authentication routes', () => {
   });
   it('creates a new user', async () => {
     const res = await request(app).post('/api/v1/users').send(mockUser);
-    console.log(res.body);
     const { first_name, last_name, email } = mockUser;
 
     expect(res.body).toEqual({
@@ -41,13 +40,17 @@ describe('authentication routes', () => {
       email,
     });
   });
-  it('signs in an existing user', async () => {
-    await request(app).post('/api/v1/users').send(mockUser);
+  it.only('signs in an existing user', async () => {
+    // const [agent, user] = await registerAndLogin();
+    const agent = await request(app).post('/api/v1/users').send(mockUser);
+    console.log(agent.body);
     const res = await request(app)
       .post('/api/v1/users/sessions')
-      .send({ email: 'bill@example.com', password: '123456' });
-    console.log(res.status);
-    expect(res.status).toEqual(401);
+      .send({ email: mockUser.email, password: mockUser.password });
+    //   .post('/api/v1/users/sessions')
+    //   .send({ email: 'bill@example.com', password: '123456' });
+    console.log('mockuser message', mockUser.email, mockUser.password);
+    expect(res.status).toEqual(200);
   });
 
   it('DELETE /sessions deletes the user session', async () => {
