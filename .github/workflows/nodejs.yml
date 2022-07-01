@@ -20,4 +20,4 @@ jobs:
           DATABASE_URL: postgres://alchemy:alchemy@postgres:5432/alchemy
           SALT_ROUNDS: ${{ secrets.SALT_ROUNDS }}
           COOKIE_NAME: ${{ secrets.COOKIE_NAME }}
-          JWT_SECRET: ${{ secret.JWT_SECRET }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
