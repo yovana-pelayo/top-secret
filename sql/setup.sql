@@ -17,4 +17,6 @@ CREATE TABLE userss (
     password_hash TEXT NOT NULL
     );
 
-INSERT INTO secrets (title, description, created_at) VALUES ('Viewer discretion is advised', 'The secret is that spongebob had the string', '2017-08-15 21:05:15.723336+07');
+INSERT INTO secrets (title, description, created_at) VALUES
+ ('Viewer discretion is advised', 'The secret is that spongebob had the string', '2017-08-15 21:05:15.723336+07'),
+ ('Blue', 'Top secret CIA joke', '2017-08-15 22:05:15.723336+07');
